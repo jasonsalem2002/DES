@@ -1,6 +1,6 @@
 from functions.utils import keyGeneration
-from DES_encryption import encrypt
-from DES_decryption import decrypt
+from encryptionFunctions.DES_encryption import encrypt
+from decryptionFunctions.DES_decryption import decrypt
 
 def triple_des_encrypt(message, keys):
     ciphertext = encrypt(message, keyb[0], keys[0])
