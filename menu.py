@@ -4,9 +4,7 @@ from tkinter import *
 from functions.utils import keyGeneration
 from DES_encryption import encrypt
 from DES_decryption import decrypt
-from DES_Page import encrypt_des_page
-from validate_hex import validate_hex
-
+from functions.utils import validate_hex
 
 # might delete later
 # used to animate gif
@@ -65,7 +63,7 @@ def main():
     # fina nshilo baaden iza ktir beshe3
     canvas = tk.Canvas(root)
     canvas.pack(fill=tk.BOTH, expand=True)
-    images = [tk.PhotoImage(file=f"background_{i}.gif") for i in range(0, 4)]
+    images = [tk.PhotoImage(file=f"Media/background_{i}.gif") for i in range(0, 4)]
     global background_image
     background_image = canvas.create_image(0, 0, anchor=tk.NW, image=images[0])
     update_background(canvas, images, 0)

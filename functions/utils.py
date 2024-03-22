@@ -1,5 +1,14 @@
 from necessaryFiles.permutations import keyp, shift_table, key_comp
 
+def validate_hex(P):
+    if not P:
+        return False
+
+    for char in P:
+        if char not in "0123456789abcdefABCDEF":
+            return False
+    return True
+
 def binary_to_hex(s):
     padded_length = ((len(s) + 3) // 4) * 4 
     s = s.zfill(padded_length) 
