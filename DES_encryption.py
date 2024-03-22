@@ -1,4 +1,4 @@
-from functions.utils import xor, bin2dec, dec2bin, binary_to_hex, keyGeneration
+from functions.utils import xor, bin2dec, dec2bin, binary_to_hex
 from necessaryFiles.permutations import initial_perm, final_perm, exp_d, per
 from necessaryFiles.sboxes import sbox
 
@@ -7,7 +7,9 @@ def encrypt(plaintext, rkb, rk):
     plaintext = ''.join(plaintext[initial_perm[i] - 1] for i in range(64))
     leftPlaintext = plaintext[0:32]
     rightPlaintext = plaintext[32:64]
-
+    
+    output = ""  # Initialize output string
+    
     for i in range(16):
         rightPlaintextExpanded = ''.join(rightPlaintext[exp_d[i] - 1] for i in range(48))
         xor_x = xor(rightPlaintextExpanded, rkb[i])  # Use round key for current round
@@ -28,17 +30,9 @@ def encrypt(plaintext, rkb, rk):
         combine = leftPlaintext + rightPlaintext
         cipher_text = ''.join(combine[final_perm[i] - 1] for i in range(64))
 
-        print("Round ", i + 1, hex(int(leftPlaintext, 2))[2:].upper(), hex(int(rightPlaintext, 2))[2:].upper(), rk[i])  # Print round keys for each round
-
-    print("Cipher Text:", binary_to_hex(cipher_text))
-    return cipher_text
-
-
-plaintext = "123456ABCD132536"
-key = "AABB09182736CCDD"
-
-rkb = keyGeneration(key)
-rk = [] 
-for keyR in rkb:
-    rk.append(format(int(keyR, 2), '012X'))
-ciphertext= encrypt(plaintext, rkb, rk)
+        output += f"Round {i + 1}: {rk[i]} \n"
+        output += f"  Left: {hex(int(leftPlaintext, 2))[2:].upper()} Right: {hex(int(rightPlaintext, 2))[2:].upper()} \n"
+    
+    output += f"Cipher Text: {binary_to_hex(cipher_text)}"
+    
+    return output

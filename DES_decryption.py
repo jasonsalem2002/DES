@@ -2,10 +2,12 @@ from functions.utils import xor, bin2dec, dec2bin, binary_to_hex, keyGeneration
 from necessaryFiles.permutations import initial_perm, final_perm, exp_d, per
 from necessaryFiles.sboxes import sbox
 
-def decryption(cipher, key):
+def decrypt(cipher, key):
     binCipher = (f'{int(cipher, 16):0>64b}')
     rkb = keyGeneration(key)
     rk = rkb[::-1]
+    
+    output = ""  # Initialize output string
     
     perm = ''.join(binCipher[initial_perm[i] - 1] for i in range(64))
     
@@ -29,14 +31,12 @@ def decryption(cipher, key):
         left = right
         right = left_xor
         
-        print("Round ", i + 1, hex(int(left, 2))[2:].upper(), hex(int(right, 2))[2:].upper(),binary_to_hex(rk[i])) 
+        output += f"Round {i + 1}: {binary_to_hex(left)} {binary_to_hex(right)} {binary_to_hex(rk[i])} \n"
     
     combined = right + left
     final = ''.join(combined[final_perm[i] - 1] for i in range(64))
     hex_code = binary_to_hex(final)
     
-    return hex_code
-
-cipher = "C0B7A8D05F3A829C"
-key = "AABB09182736CCDD"
-print("Decryption Result:", decryption(cipher, key))
+    output += f"Decrypted Text: {hex_code}"
+    
+    return output
