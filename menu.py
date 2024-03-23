@@ -59,6 +59,7 @@ def main():
     root = tk.Tk()
     root.title("DES-TripleDES")
     root.geometry("400x500")
+    root.maxsize(800, root.winfo_screenheight())
 
     # for the gif background
     # fina nshilo baaden iza ktir beshe3
@@ -70,7 +71,7 @@ def main():
     update_background(canvas, images, 0)
 
     color1 = '#00FF00'
-    color2 = '#ADFF2F'
+    color2 = '#149414'
     color3 = '#138A36'
     color4 = 'BLACK'
 
@@ -84,8 +85,12 @@ def main():
     # label_frame = tk.Label(frame, text="test", bg="white")
     # label_frame.pack(padx=10, pady=10)
     # use this later to add how many columns i want in the frame
-    # frame.columnconfigure()
-    # frame.rowconfigure()
+    # i want a 2x2 grid
+    # Configure columns
+    for col in range(2):
+        frame.columnconfigure(col, weight=1, minsize=100)
+    for row in range(2):
+        frame.rowconfigure(row, weight=1, minsize=100)
 
 
     encrypt_des_button = tk.Button(
@@ -97,18 +102,27 @@ def main():
         highlightthickness=2,
         highlightbackground=color2,
         highlightcolor='WHITE',
-        # width
-        # height
+        width=7,
+        height=7,
         border=0,
         cursor='cross',
         text="Encrypt (DES)", 
-        font=('courier', 16, 'bold'),
+        font=('Courier', 12, 'bold'),
         command=encrypt_des_test)
-    encrypt_des_button.pack(pady=5)
+    encrypt_des_button.grid(row=0, column=0, padx=10, pady=10, sticky='nsew')
 
 
-    decrypt_des_button = tk.Button(frame, text="Decrypt (DES)", command=decrypt_des_test)
-    decrypt_des_button.pack(pady=5)
+    decrypt_des_button = tk.Button(
+        frame, 
+        background=color2,
+        width=7,
+        height=7,
+        cursor='cross',
+        border=0,
+        text="Decrypt (DES)",
+        font=('mechanical', 10, 'bold'),
+        command=decrypt_des_test)
+    decrypt_des_button.grid(row=0, column=1, padx=10, pady=10, sticky='nsew')
 
 
     # enrypt_3des_button = tk.Button(frame, text="Encrypt (Triple DES)", command=decrypt) # changed decrypt_des to decrypt
