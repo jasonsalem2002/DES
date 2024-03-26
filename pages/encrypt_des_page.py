@@ -11,12 +11,12 @@ def encrypt_des_test():
 
     def handle_encryption(event=None):
         plaintext=plaintext_entry.get()
-        if plaintext:
-            key = "AABB09182736CCDD"
+        key=key_entry.get()
+        if (plaintext and key):
+            #key = "AABB09182736CCDD"
             rkb = keyGeneration(key)
             rk = [format(int(keyR, 2), '012X') for keyR in rkb]
             ciphertext = encrypt(plaintext, rkb, rk)
-            #output.config(text=ciphertext)
             output.config(state="normal")  # Set state to normal to allow editing temporarily
             output.delete('1.0', tk.END)  # Clear previous content
             output.insert(tk.END, ciphertext)
@@ -33,6 +33,11 @@ def encrypt_des_test():
     isHex = (root.register(validate_hex), '%P')
     plaintext_entry = tk.Entry(root, validate="key", validatecommand=isHex)
     plaintext_entry.grid(row=0, column=1, padx=10, pady=10)
+    
+    key_label = tk.Label(root, text="Key:")
+    key_label.grid(row=1, column=0, padx=10, pady=10)
+    key_entry = tk.Entry(root, validate='key', validatecommand=isHex)
+    key_entry.grid(row=1, column=1, padx=10, pady=10)
 
     # encryption should be triggered by either ENTER or clicking button
     trigger = tk.Button(root, text="Encrypt", command=handle_encryption)
