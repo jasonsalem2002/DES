@@ -7,6 +7,7 @@ from decryptionFunctions.DES_decryption import decrypt
 from functions.utils import validate_hex
 from pages.encrypt_des_page import encrypt_des_test
 from pages.decrypt_des_page import decrypt_des_test
+#from pages.encrypt_3des_page import encrypt_triple_des
 
 # might delete later
 # used to animate gif
@@ -14,45 +15,6 @@ def update_background(canvas, images, index):
     canvas.itemconfig(background_image, image=images[index])
     index = (index + 1) % len(images)
     canvas.after(100, update_background, canvas, images, index)
-
-
-# def encrypt_des():
-#     root = tk.Tk()
-#     root.title("Encrypt DES")
-#     root.geometry("400x500")
-
-#     # defining the function to validate if hex
-#     isHex = (root.register(validate_hex), '%P')
-#     plaintext_entry = tk.Entry(root, validate="key", validatecommand=isHex)
-#     plaintext_entry.pack()
-
-#     # getting the entry
-#     plaintext=plaintext_entry.get()
-#     # pressing ENTER should trigger the encryption (not working rn)
-#     plaintext_entry.bind("<Return>", encrypt)
-#     #plaintext = "123456ABCD132536"
-#     key = "AABB09182736CCDD"
-#     rkb = keyGeneration(key)
-#     rk = [] 
-#     for keyR in rkb:
-#         rk.append(format(int(keyR, 2), '012X'))
-#     ciphertext = encrypt(plaintext, rkb, rk)
-
-#     output.config(text=ciphertext)
-#     output.pack() # ERROR - nothing is displaying on this window except the input box
-    
-#     label = tk.Label(root, text="test test test")
-#     label.pack()
-#     # messagebox.showinfo("DES Encryption", ciphertext)
-
-#     root.mainloop()
-
-
-# def decrypt_des():
-#     cipher = "C0B7A8D05F3A829C"
-#     key = "AABB09182736CCDD"
-#     decrypted = decrypt(cipher, key)
-#     messagebox.showinfo("DES Decryption", decrypted)
 
 
 def main():
@@ -125,12 +87,32 @@ def main():
     decrypt_des_button.grid(row=0, column=1, padx=10, pady=10, sticky='nsew')
 
 
-    # enrypt_3des_button = tk.Button(frame, text="Encrypt (Triple DES)", command=decrypt) # changed decrypt_des to decrypt
-    # encrypt_3des_button.pack(pady=5)
+    encrypt_3des_button = tk.Button(
+        frame, 
+        background=color2,
+        width=7,
+        height=7,
+        cursor='cross',
+        border=0,
+        text="Encrypt (Triple DES)",
+        font=("mechanical", 10, 'bold')
+        #command=encrypt_triple_des
+        ) # changed decrypt_des to decrypt
+    encrypt_3des_button.grid(row=1, column=0, padx=10, pady=10, sticky='nsew')
 
 
-    # decrypt_3des_button = tk.Button(frame, text="Decrypt (Triple DES)", command=decrypt_des)
-    # decrypt_3des_button.pack(pady=5)
+    decrypt_3des_button = tk.Button(
+        frame,
+        background=color2,
+        width=7,
+        height=7,
+        cursor='cross',
+        border=0,
+        text="Decrypt (Triple DES)", 
+        font=("mechanical", 10, 'bold')
+        #command=decrypt_des
+        )
+    decrypt_3des_button.grid(row=1, column=1, padx=10, pady=10, sticky='nsew')
 
 
     root.mainloop()

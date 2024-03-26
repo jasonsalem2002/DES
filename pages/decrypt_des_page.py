@@ -5,11 +5,25 @@ from functions.utils import validate_hex
 from decryptionFunctions.DES_decryption import decrypt
 
 def decrypt_des_test():
+
+    global output
+
     root = tk.Tk()
     root.title("Decrypt DES")
-    root.geometry("400x500")
+    root.geometry("800x600")
 
     isHex = (root.register(validate_hex), '%P')
+
+    def handle_decryption(event=None):
+        ciphertext = ciphertext_entry.get()
+        key = key_entry.get()
+        if (ciphertext and key):
+            plaintext = decrypt(ciphertext, key)
+            output.config(state="normal")  # Set state to normal to allow editing temporarily
+            output.delete('1.0', tk.END)  # Clear previous content
+            output.insert(tk.END, plaintext)
+            output.config(state="disabled")  # Set state back to disabled after inserting ciphertext
+
 
     ciphertext_label = tk.Label(root, text="Ciphertext:")
     ciphertext_label.grid(row=0, column=0, padx=10, pady=10)
@@ -21,10 +35,13 @@ def decrypt_des_test():
     key_entry = tk.Entry(root, validate='key', validatecommand=isHex)
     key_entry.grid(row=1, column=1, padx=10, pady=10)
 
-    ciphertext = ciphertext_entry.get()
-    key = key_entry.get()
+    trigger = tk.Button(root, text="Decrypt", command=handle_decryption)
+    trigger.grid(row=0, column=4, padx=10, pady=10)
+    ciphertext_entry.bind("<Return>", lambda event: handle_decryption())
 
-    output = decrypt(ciphertext, key)
-    #output.grid(row=4, column=0)
+    output = tk.Text(root, height=32, width=40, state=DISABLED)  
+    output.grid(row=3, column=0)
+
+    root.mainloop()
 
 
