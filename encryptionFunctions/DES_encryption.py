@@ -32,7 +32,7 @@ def encrypt(plaintext, rkb, rk):
 
         output += f"Round {i + 1}: {rk[i]} \n"
         output += f"  Left: {hex(int(leftPlaintext, 2))[2:].upper()} Right: {hex(int(rightPlaintext, 2))[2:].upper()} \n"
+    cipher_text = binary_to_hex(cipher_text)
+    output += f"Cipher Text: {cipher_text} \n"
     
-    output += f"Cipher Text: {binary_to_hex(cipher_text)}"
-    
-    return output
+    return output, cipher_text

@@ -1,6 +1,4 @@
 from necessaryFiles.permutations import keyp, shift_table, key_comp
-import string
-import random
 
 def validate_hex(P):
     if not P:
@@ -73,8 +71,3 @@ def dec2bin(num):
         for i in range(0, counter):
             res = '0' + res
     return res
-
-def generateRandomKey(n): # generates a random key of length n (might be of use later)
-  hexChars = '123456789ABCDEF'
-  randomKey = ''.join(random.choice(hexChars) for i in range (n))
-  return randomKey

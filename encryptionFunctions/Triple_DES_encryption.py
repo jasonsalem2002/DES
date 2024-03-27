@@ -1,15 +1,21 @@
+import sys
+import os
+
+# Add the directory containing your project to the Python path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../')
+
 from functions.utils import keyGeneration
 from encryptionFunctions.DES_encryption import encrypt
 from decryptionFunctions.DES_decryption import decrypt
 
-def triple_des_encrypt(message, keys):
-    ciphertext = encrypt(message, keyb[0], keys[0])
-    print("First DES Encrypted Cipher Text:", ciphertext)
-    ciphertextDec = decrypt(ciphertext, keyb[1])
-    print("First DES Decrypted Cipher Text:", ciphertextDec)
-    ciphertextEnc = encrypt(ciphertextDec, keyb[2], keys[2])
-    print("Second DES Encrypted Cipher Text:", ciphertextEnc)
-    return ciphertext
+def triple_des_encrypt(message,keyBinary, keys):
+    output, ciphertext = encrypt(message, keyBinary[0], keys[0])
+    print("First DES Encrypted Cipher Text:", output)
+    outputDec, ciphertextDec = decrypt(ciphertext, keyBinary[1])
+    print("First DES Decrypted Cipher Text:", outputDec)
+    final, ciphertextEnc = encrypt(ciphertextDec, keyBinary[2], keys[2])
+    print("Second DES Encrypted Cipher Text:", final)
+    return ciphertextEnc
 
 # Generate three keys for Triple DES
 key1 = "AABB09182736CCDD"
@@ -31,5 +37,5 @@ keyb = [rkb1, rkb2, rkb3]
 
 # Encrypt using Triple DES
 plaintext = "123456ABCD132536"
-ciphertext = triple_des_encrypt(plaintext, triple_des_keys)
+ciphertext = triple_des_encrypt(plaintext,keyb, triple_des_keys)
 print("Triple DES Encrypted Cipher Text:", ciphertext)
