@@ -1,8 +1,9 @@
 import sys
 import os
 
-# Add the directory containing your project to the Python path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + '/../')
+
+# the above was written by chat gpt to fix import errors
 
 from functions.utils import keyGeneration
 from encryptionFunctions.DES_encryption import encrypt

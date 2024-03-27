@@ -1,7 +1,6 @@
 import tkinter as tk
-from tkinter import messagebox
 from tkinter import *
-from functions.utils import validate_hex
+from functions.utils import validate_hex, keyGeneration
 from decryptionFunctions.DES_decryption import decrypt
 
 def decrypt_des_test():
@@ -18,11 +17,12 @@ def decrypt_des_test():
         ciphertext = ciphertext_entry.get()
         key = key_entry.get()
         if (ciphertext and key):
-            plaintext = decrypt(ciphertext, key)
-            output.config(state="normal")  # Set state to normal to allow editing temporarily
-            output.delete('1.0', tk.END)  # Clear previous content
+            keyB = keyGeneration(key)
+            plaintext = decrypt(ciphertext, keyB)
+            output.config(state="normal")  
+            output.delete('1.0', tk.END) 
             output.insert(tk.END, plaintext)
-            output.config(state="disabled")  # Set state back to disabled after inserting ciphertext
+            output.config(state="disabled")
 
 
     ciphertext_label = tk.Label(root, text="Ciphertext:")

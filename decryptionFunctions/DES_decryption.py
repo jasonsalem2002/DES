@@ -5,7 +5,7 @@ from necessaryFiles.sboxes import sbox
 def decrypt(cipher, key):
     binCipher = (f'{int(cipher, 16):0>64b}')
     rk = key[::-1]
-        
+
     output = ""  # Initialize output string
     
     perm = ''.join(binCipher[initial_perm[i] - 1] for i in range(64))
@@ -41,3 +41,5 @@ def decrypt(cipher, key):
     return output, hex_code
 
 #testing C0B7A8D05F3A829C
+# pt = "123456ABCD132536"
+# key = "AABB09182736CCDD"
