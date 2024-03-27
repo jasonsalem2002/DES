@@ -10,8 +10,6 @@ from pages.decrypt_des_page import decrypt_des_test
 from tkinter import ttk
 #from pages.encrypt_3des_page import encrypt_triple_des
 
-# might delete later
-# used to animate gif
 def update_background(canvas, images, index):
     canvas.itemconfig(background_image, image=images[index])
     index = (index + 1) % len(images)
@@ -23,9 +21,6 @@ def main():
     root.title("DES-TripleDES")
     root.geometry("400x500")
     root.maxsize(800, root.winfo_screenheight())
-
-    # for the gif background
-    # fina nshilo baaden iza ktir beshe3
     canvas = tk.Canvas(root)
     canvas.pack(fill=tk.BOTH, expand=True)
     images = [tk.PhotoImage(file=f"media/background_{i}.gif") for i in range(0, 4)]
