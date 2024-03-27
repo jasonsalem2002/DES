@@ -1,5 +1,4 @@
 import tkinter as tk
-from tkinter import messagebox
 from tkinter import *
 from functions.utils import validate_hex
 from encryptionFunctions.DES_encryption import encrypt
