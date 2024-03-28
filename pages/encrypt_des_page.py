@@ -7,6 +7,7 @@ from functions.randomKeyGenerator import generate_random_key
 def encrypt_des_test():
 
     global output 
+    global output_key
 
     def handle_encryption(event=None):
         plaintext=plaintext_entry.get()
@@ -38,25 +39,25 @@ def encrypt_des_test():
     key_entry.grid(row=1, column=1, padx=10, pady=10)
 
     # random key generation
-    frame = tk.Frame(root, width=200, height=100, bg="lightblue")
-    frame.grid(row=3, column=8)
-
-    random_key_var = tk.StringVar()
+    frame = tk.Frame(root, bg="lightblue")
+    frame.grid(row=3, column=6, rowspan=2, columnspan=2)
     
     def get_rand_key():
+        global generated_key 
         generated_key = generate_random_key()
-        #key_label.grid(row=1, column=1)
-        #key_label.config(text="Random Key: " + generated_key)
-        random_key_var.set(generated_key)
-        return generated_key
+        output_key.config(state="normal")
+        output_key.delete('1.0', tk.END)
+        output_key.insert(tk.END, generated_key)
+        output_key.config(state="disabled")
+        key_entry.delete(0, tk.END)  # currently NOT working
+        key_entry.insert(0, generated_key)
 
-    randKey_label = tk.Label(frame, text="Generate random key")
-    randKey_label.grid(row=0, column=0, padx=5, pady=5)
-    randKey_button = tk.Button(frame, text="Generate", command=get_rand_key)
-    randKey_button.grid(row=0, column=1, padx=5, pady=5)
-    generated_key_label = tk.Label(frame, textvariable=random_key_var)
-    generated_key_label.grid(row=1, column=0, padx=5, pady=5)
+    randKey_button = tk.Button(frame, text="Generate Random Key", command=get_rand_key)
+    randKey_button.grid(row=0, column=0, padx=5, pady=5)
+    output_key = tk.Text(frame, height=32, width=40, state=DISABLED)  
+    output_key.grid(row=1, column=0)
     frame.columnconfigure(0, weight=1)
+    frame.rowconfigure(0, weight=1)
 
     # encryption should be triggered by either ENTER or clicking button
     trigger = tk.Button(root, text="Encrypt", command=handle_encryption)

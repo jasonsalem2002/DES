@@ -45,28 +45,6 @@ def main():
     for row in range(2):
         frame.rowconfigure(row, weight=1, minsize=100)
 
-    # style = ttk.Style()
-    # style.configure(
-    #     'Custom.TButton', 
-    #     background=color2, 
-    #     foreground=color4, 
-    #     activebackground=color3, 
-    #     activeforeground=color4,
-    #     font=('Courier', 10, 'bold'), 
-    #     highlightbackground=color2,
-    #     highlightcolor='WHITE', 
-    #     width=7, 
-    #     height=7,
-    #     border=0,
-    #     cursor='cross')
-
-    # encrypt_des_button = ttk.Button(
-    #     frame,
-    #     text="Encrypt (DES)",
-    #     style='Custom.TButton',
-    #     command=encrypt_des_test
-    # )
-
     encrypt_des_button = tk.Button(
         frame,
         background=color2,

@@ -24,5 +24,5 @@ def generate_random_key():
     return formatted_key
 
 # Generate a random key
-random_key = generate_random_key()
-print("Random Key:", random_key)
+# random_key = generate_random_key()
+# print("Random Key:", random_key)
