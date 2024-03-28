@@ -20,7 +20,7 @@ def generate_random_key():
     
     # Format the random hexadecimal string to match the desired pattern
     formatted_key = f"{random_hex[0:2]}{random_hex[6:8]}{random_hex[4:6]}{random_hex[2:4]}{random_hex[10:12]}{random_hex[14:16]}{random_hex[12:14]}{random_hex[8:10]}"
-    
+
     return formatted_key
 
 # Generate a random key

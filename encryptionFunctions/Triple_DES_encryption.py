@@ -37,6 +37,6 @@ triple_des_keys = [rk1, rk2, rk3]
 keyb = [rkb1, rkb2, rkb3]
 
 # Encrypt using Triple DES
-plaintext = "123456ABCD132536"
-ciphertext = triple_des_encrypt(plaintext,keyb, triple_des_keys)
-print("Triple DES Encrypted Cipher Text:", ciphertext)
+#plaintext = "123456ABCD132536"
+#ciphertext = triple_des_encrypt(plaintext,keyb, triple_des_keys)
+#print("Triple DES Encrypted Cipher Text:", ciphertext)

@@ -3,7 +3,7 @@ from tkinter import *
 from pages.encrypt_des_page import encrypt_des_test
 from pages.decrypt_des_page import decrypt_des_test
 from tkinter import ttk
-#from pages.encrypt_3des_page import encrypt_triple_des
+from pages.encrypt_3des_page import encrypt_triple_des
 
 def update_background(canvas, images, index):
     canvas.itemconfig(background_image, image=images[index])
@@ -81,7 +81,7 @@ def main():
         border=0,
         cursor='cross',
         text="Encrypt (DES)", 
-        font=('Courier', 10, 'bold'),
+        font=('mechanical', 10, 'bold'),
         command=encrypt_des_test)
     encrypt_des_button.grid(row=0, column=0, padx=10, pady=10, sticky='nsew')
 
@@ -111,8 +111,8 @@ def main():
         cursor='cross',
         border=0,
         text="Encrypt (Triple DES)",
-        font=("mechanical", 10, 'bold')
-        #command=encrypt_triple_des
+        font=("mechanical", 10, 'bold'),
+        command=encrypt_triple_des
         ) # changed decrypt_des to decrypt
     encrypt_3des_button.grid(row=1, column=0, padx=10, pady=10, sticky='nsew')
 
