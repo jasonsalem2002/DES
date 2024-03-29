@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import *
+from tkinter import messagebox
 from functions.utils import validate_hex, keyGeneration
 from decryptionFunctions.DES_decryption import decrypt
 
@@ -16,6 +17,12 @@ def decrypt_des_test():
     def handle_decryption(event=None):
         ciphertext = ciphertext_entry.get()
         key = key_entry.get()
+        if len(ciphertext) != 16:
+            messagebox.showerror("Error", "Ciphertext must be exactly 16 characters long.")
+            return
+        if len(key) != 16:
+            messagebox.showerror("Error", "Key must be exactly 16 characters long.")
+            return # dont need to validate if input is not empty after this
         if (ciphertext and key):
             keyB = keyGeneration(key)
             plaintext = decrypt(ciphertext, keyB)
