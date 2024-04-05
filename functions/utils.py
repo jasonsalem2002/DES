@@ -1,7 +1,8 @@
 from necessaryFiles.permutations import keyp, shift_table, key_comp
 
 def validate_hex(P):
-    if not P:
+
+    if not P or len(P) > 16:  # its not just a validate hex function but also to check that input is restricted to less or equal than 16
         return False
 
     for char in P:

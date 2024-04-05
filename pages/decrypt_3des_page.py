@@ -36,7 +36,7 @@ def decrypt_triple_des():
         keyb = [rkb1, rkb2, rkb3]
 
         ciphertext = triple_des_decrypt(ciphertext, keyb, triple_des_keys)
-        print("Triple DES Decrypted Plain Text:", ciphertext)
+        #print("Triple DES Decrypted Plain Text:", ciphertext)
 
         output.config(state="normal")
         output.delete('1.0', tk.END)

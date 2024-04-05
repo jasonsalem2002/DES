@@ -14,4 +14,5 @@ def triple_des_encrypt(message,keyBinary, keys):
     final, ciphertextEnc = encrypt(ciphertextDec, keyBinary[2], keys[2])
     #print("Second DES Encrypted Cipher Text:", final)
     #return ciphertextEnc
-    return final
+    everything = output + "\n" + outputDec + "\n" + final
+    return everything

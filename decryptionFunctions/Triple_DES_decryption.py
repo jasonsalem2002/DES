@@ -13,4 +13,7 @@ def triple_des_decrypt(ciphertext, keyBinary, keys):
     #print("First DES Decrypted Intermediate Text:", output)
     plaintext, _ = decrypt(intermediate_text_dec, keyBinary[0])
     #print("First DES Decrypted Plain Text:", plaintext)
-    return plaintext
+    everything = outputDec + "\n" + output + "\n" + plaintext
+    return everything
+
+
